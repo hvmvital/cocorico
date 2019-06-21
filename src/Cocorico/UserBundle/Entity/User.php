@@ -163,7 +163,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @ORM\Column(name="phone_prefix", type="string", length=6, nullable=true)
      */
-    protected $phonePrefix = '+33';
+    protected $phonePrefix = '+1';
 
     /**
      * @var string
@@ -188,7 +188,8 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @ORM\Column(name="nationality", type="string", length=3, nullable=true)
      */
-    protected $nationality = 'FR';
+    protected $nationality = 'CA';
+
 
     /**
      * @var string
@@ -199,7 +200,18 @@ class User extends BaseUser implements ParticipantInterface
      *  "CocoricoRegistration", "CocoricoProfileBankAccount"
      * })
      */
-    protected $countryOfResidence = 'FR';
+    protected $countryOfResidence = 'CA';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="$province", type="string", length=3, nullable=true)
+     *
+     * @Assert\NotBlank(message="cocorico_user.$province.blank", groups={
+     *  "CocoricoRegistration", "CocoricoProfileBankAccount"
+     * })
+     */
+    protected $province;
 
     /**
      * @var string
@@ -357,7 +369,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @var string
      */
-    protected $timeZone = 'Europe/Paris';
+    protected $timeZone = 'America/Toronto';
 
     /**
      * @ORM\OneToMany(targetEntity="Cocorico\MessageBundle\Entity\Message", mappedBy="sender", cascade={"remove"}, orphanRemoval=true)
@@ -969,6 +981,20 @@ class User extends BaseUser implements ParticipantInterface
     public function setCountryOfResidence($countryOfResidence)
     {
         $this->countryOfResidence = $countryOfResidence;
+    }
+
+
+    public function getProvince()
+    {
+        return $this->province;
+    }
+
+    /**
+     * @param string $province
+     */
+    public function setProvince($province)
+    {
+        $this->province = $province;
     }
 
     /**

@@ -157,6 +157,27 @@
                 </div>
             </div>
 
+            <!-- PROVINCE -->
+            <div class="field-row">
+                <div class="error-container">{{ form_errors(form_registration.countryOfResidence) }}</div>
+                <span class="label">
+                    {{ form_label(form_registration.province, null, {
+                        'label_attr': {
+                            'data-label-legal': 'form.province.legal'|trans
+                        }
+                    }) }}
+                </span>
+
+                <div class="field-holder">
+                    {{ form_widget(form_registration.province, {
+                        'attr': {
+                            'class': "form-control required no-arrow"
+                        }
+                    }) }}
+                </div>
+            </div>
+            <!--------->
+
             <div class="field-row validate-row">
                 <div class="error-container">{{ form_errors(form_registration.phonePrefix) }}</div>
                 <span class="label" style="margin-top:0">{{ form_label(form_registration.phonePrefix) }}</span>

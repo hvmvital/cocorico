@@ -22,12 +22,13 @@
                         <div class="listing-post head">
                             <div class="time-price">
                                 <strong class="price">
-                                    {{ price }}
+                                   {# {{ price }}
                                     <sup>
                                         <small>{{ vatInclusionText(app.request.getLocale()) }}</small>
                                     </sup>
-                                    /{{ (0)|add_time_unit_text|first }}
+                                    /{{ (0)|add_time_unit_text|first }}  #}
                                 </strong>
+
                             </div>
                         </div>
 
@@ -37,13 +38,18 @@
                     </a>
                 </div>
                 <div class="post-content">
-                    <h2>
-                        <a href="{{ path('cocorico_listing_show', { 'slug': listing_translation.slug }) }}">
-                            {{ listing_translation.title }}
-                        </a>
-                    </h2>
+                    <p style="font-weight: 600; font-size: 14px;">
+                        {{ listing_translation.title }}
+                    </p>
 
-                    <p>{{ listing_translation.description | strip_private_info | truncate(50,true) }}</p>
+                    <p style="color: rgb(63, 193, 201); margin: 2px 0 0;
+                        font-weight: 300; font-size: 18px;">
+                        {{ price }}
+                    </p>
+                    <p style="margin: 0 0 5px 2px; font-weight: 600; font-size: 11px;">
+                        {{ vatInclusionText(app.request.getLocale()) }}
+                        / {{ (0)|add_time_unit_text }}
+                    </p>
                 </div>
             </article>
         {% endfor %}

@@ -14,6 +14,8 @@
 {% set listing_location = listing.location %}
 {% set booking_duration = booking.duration(endDayIncluded, timeUnit) %}
 
+
+
 {%- block meta_title -%}
     {{ 'booking.new.meta_title'|trans({}, 'cocorico_meta') ~ " " ~ listing_translation.title ~ ", " ~ listing_location.city ~ " - " ~ booking.start|localizeddate('short', 'none', 'fr') ~ ", " ~ booking_duration|add_time_unit_text ~ " : "  ~ " - " ~ cocorico_site_name }}
 {%- endblock -%}
@@ -36,6 +38,7 @@
 
 
 {% block layout %}
+
     {% embed '@CocoricoCore/Frontend/layout.html.twig' %}
         {% trans_default_domain 'cocorico_booking' %}
 
@@ -52,24 +55,34 @@
             </a>
             <!-- two-columns -->
             <div class="twocolumns row alt">
+
                 <!-- contain the main content of the page -->
                 <div id="content" class="listing-area col-xs-12 col-md-9">
                     <div class="content-holder">
                         {% include 'CocoricoCoreBundle:Frontend:Booking/_form_new.html.twig' with {
                             'booking' : booking,
-                            'form': form
+                            'form': form,
+                            'taxRATE' : taxRATE
                         } only %}
+
                     </div>
                 </div>
 
                 {% include 'CocoricoCoreBundle:Frontend:Booking/_side.html.twig' with {
                     'booking' : booking
                 } only %}
+
             </div>
+            {{ dump(taxRATE) }}
         {% endblock %}
 
     {% endembed %}
+
+
+
 {% endblock layout %}
+
+
 
 
 {% block javascripts %}

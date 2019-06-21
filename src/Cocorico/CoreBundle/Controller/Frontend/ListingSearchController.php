@@ -328,11 +328,47 @@ class ListingSearchController extends Controller
         );
     }
 
+
+    public function matchedListingAction(Request $request, $id = null)
+    {
+        $results = new ArrayCollection();
+        $listingSearchRequest = $this->getMatchingListingSearchRequest();
+        $ids = ($listingSearchRequest) ? $listingSearchRequest->getMatchedListings() : array();
+        if ($listingSearchRequest && count($ids) > 0) {
+            $results = $this->get("cocorico.listing_search.manager")->getMatchedListingsByIds(
+                $listingSearchRequest,
+                $ids,
+                null,
+                $request->getLocale(),
+                array($id)
+            );
+        }
+
+        return $this->render(
+            '@CocoricoCore/Frontend/Listing/matched_listing.html.twig',
+            array(
+                'results' => $results
+            )
+        );
+    }
+
     /**
      * @return ListingSearchRequest
      */
     protected function getListingSearchRequest()
     {
+        $session = $this->get('session');
+        /** @var ListingSearchRequest $listingSearchRequest */
+        $listingSearchRequest = $session->has('listing_search_request') ?
+            $session->get('listing_search_request') :
+            $this->get('cocorico.listing_search_request');
+
+        return $listingSearchRequest;
+    }
+
+    protected function getMatchingListingSearchRequest()
+    {
+
         $session = $this->get('session');
         /** @var ListingSearchRequest $listingSearchRequest */
         $listingSearchRequest = $session->has('listing_search_request') ?

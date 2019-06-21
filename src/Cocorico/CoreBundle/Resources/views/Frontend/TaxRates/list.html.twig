@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+{% block layout %}
+
+    <h1 style="text-align: center; font-weight: lighter;">TAX RATES:</h1>
+    <table style="margin: 10px; width: 700px; margin: 0 auto; text-align: center"
+           class="table table-hover">
+        <thead>
+        <tr>
+            <th colspan="2" style="text-align: center; padding: 15px;">PROVINCE</th>
+            <th style="text-align: center; padding: 15px;">GST, %</th>
+            <th style="text-align: center; padding: 15px;">PST, %</th>
+            <th style="text-align: center; padding: 15px;">HST, %</th>
+            <th style="text-align: center; padding: 15px;; width: 20%;">TAX RATE, %</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for taxrate in taxrates %}
+            <tr>
+                <td style="text-align: left; font-weight: 700;">{{ taxrate.province }}</td>
+                <td style="text-align: left;">{{ taxrate.provinceFull }}</td>
+                <td>{{ taxrate.GST }}</td>
+                <td>{{ taxrate.PST }}</td>
+                <td>{{ taxrate.HST }}</td>
+                <td style="text-align: left; padding-left: 40px; font-weight: 700;">
+                    {{ (taxrate.GST + taxrate.PST + taxrate.HST) }}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {{ dump(taxrates) }}
+{% endblock %}
+

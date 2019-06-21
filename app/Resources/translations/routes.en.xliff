@@ -127,6 +127,11 @@
         <source>/dashboard/listing/{id}/edit_images</source>
         <target>/dashboard/listing/{id}/edit_images</target>
       </trans-unit>
+      <trans-unit id="edit_files_en_id" resname="cocorico_dashboard_listing_edit_files">
+              <source>/dashboard/listing/{id}/edit_files</source>
+              <target>/dashboard/listing/{id}/edit_files</target>
+            </trans-unit>
+
       <trans-unit id="efd024f32b7dbbc957e1dec4d6735ec04227cb12" resname="cocorico_dashboard_listing_edit_location">
         <source>/dashboard/listing/{id}/edit_location</source>
         <target state="new">/dashboard/listing/{id}/edit_location</target>

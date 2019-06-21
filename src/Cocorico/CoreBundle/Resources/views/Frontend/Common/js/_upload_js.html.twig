@@ -28,7 +28,7 @@ filter="?jsqueeze" output='js/compiled/upload.js' %}
                 url: '{{ upload_url }}',
                 dataType: 'json',
                 autoUpload: false,
-                acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+                acceptFileTypes: /(\.|\/)(gif|jpe?g|png|pdf)$/i,
                 maxFileSize: {{ listing_img_max_upload_size }}000000, // MB
                 maxNumberOfFiles: {{ upload_max }},
                 // Enable image resizing, except for Android and Opera

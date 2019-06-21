@@ -101,7 +101,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="block">
+                                <div class="price-section">
                                     <h2>{{ 'listing.new.price.title'|trans }}</h2>
                                     <!-- price-box -->
                                     <div class="area">
@@ -132,27 +132,34 @@
                                                     'form': form
                                                 } only %}
                                             {% endif %}
-                                        </div>
-                                        <!-- simulator -->
-                                        <div class="currency-converter">
-                                            {% include '@CocoricoCore/Frontend/Common/_currency_converter.html.twig' with {'close' : true} only %}
-                                        </div>
-                                    </div>
-                                    <!-- alert -->
-                                    <div role="alert" class="alert alert-warning">
-                                        <i class="ico exclamation">!</i>
 
-                                        <p>
-                                            {{ 'listing.new.price_notice'| trans }}
-                                        </p>
+                                        </div>
+                                        <div class="price-box" style="background: none; padding: 0; float: right;">
+                                            <!-- alert -->
+                                            <div role="alert" class="alert alert-warning " >
+                                                <i class="ico exclamation">!</i>
+
+                                                <p>
+                                                    {{ 'listing.new.price_notice'| trans }}
+                                                </p>
+
+                                            </div>
+                                        </div>
+
+                                        <!-- simulator -->
+                                        <!--<div class="currency-converter">
+                                            {% include '@CocoricoCore/Frontend/Common/_currency_converter.html.twig' with {'close' : true} only %}
+                                        </div>-->
                                     </div>
+
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-inquiry">
                                     <div class="columns-holder">
+                                        <h2>{{ 'listing.new.address.title'|trans }}</h2>
                                         <div class="column" id="listing-location">
-                                            <h2>{{ 'listing.new.address.title'|trans }}</h2>
+
 
                                             <p class="error"></p>
                                             {{ form_errors(form.location.coordinate) }}

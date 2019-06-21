@@ -1,17 +1,18 @@
 parameters:
     #### Environment independent parameters. Same values in dev, staging, prod environments  ####
     #Site general info
-    cocorico.site_name: Cocorico
-    cocorico.phone: +33(0) 1 43 79 86 30
-    cocorico.address: 67 rue de Provence, 75009
+    cocorico.site_name: Abilis Energy Cocorico Test
+    cocorico.phone: +1 514 225 4145
+    cocorico.address: 1010 Sherbrooke St West, Suite 1900, Montreal, QC, H3A 2R7, CANADA
     cocorico.short_description: 'Cocorico is collaborative consumption platform'
-    cocorico.contact_mail: contact@cocorico.io
+    cocorico.contact_mail: info@abibisenergy.com
     #To obfuscate see http://wbwip.com/wbw/emailencoder.html
-    cocorico.contact_mail_obfuscated: "&#099;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#099;&#111;&#099;&#111;&#114;&#105;&#099;&#111;&#046;&#105;&#111;"
-    cocorico.from_email: no-reply@cocorico.io
-    cocorico.webmaster_email: webmaster@cocorico.io
-    cocorico.vat_number: FR 12 123 456 789
-    cocorico.home_rss_feed: 'http://www.cocolabs.io/fr/feed/'
+    #cocorico.contact_mail_obfuscated: "&#099;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#099;&#111;&#099;&#111;&#114;&#105;&#099;&#111;&#046;&#105;&#111;"
+    cocorico.contact_mail_obfuscated: "&#105;&#110;&#102;&#111;&#064;&#097;&#098;&#105;&#098;&#105;&#115;&#101;&#110;&#101;&#114;&#103;&#121;&#046;&#099;&#111;&#109;"
+    cocorico.from_email: no-reply@abibisenergy.com
+    cocorico.webmaster_email: webmaster@abibisenergy.com
+    cocorico.vat_number: CA 12 123 456 789
+    cocorico.home_rss_feed: 'https://rss.cbc.ca/lineup/technology.xml'
 
     #Languages
     #For knp translatable
@@ -23,26 +24,27 @@ parameters:
             - fr
     cocorico.locales_string: en|fr
     #Currencies
-    cocorico.currency: EUR
+    cocorico.currency: CAD
     cocorico.currencies_for_lexik:
-        - EUR
-        - USD
-        - GBP
-        - CHF
         - CAD
-        - JPY
-        - RUB
-        - AUD
+        #- EUR
+        #- USD
+        #- GBP
+        #- CHF
+        #- JPY
+        #- RUB
+        #- AUD
     cocorico.currencies:
-        EUR: €
-        USD: $
-        GBP: £
-        CHF: CHF
-        CAD: $ CAD
-        JPY: ¥
-        RUB: руб
-        AUD: $ AUD
-    cocorico.currencies_string: EUR|USD|GBP|CHF|CAD|JPY|RUB|RUB|AUD
+        CAD: $
+        #EUR: €
+        #USD: $
+        #GBP: £
+        #CHF: CHF
+        #JPY: ¥
+        #RUB: руб
+        #AUD: $ AUD
+    #cocorico.currencies_string: EUR|USD|GBP|CHF|CAD|JPY|RUB|RUB|AUD
+    cocorico.currencies_string: CAD
     cocorico.currencies_json: "%kernel.root_dir%/../web/json/currencies.json"
 
     #Does VAT is included in prices fixing
@@ -51,20 +53,30 @@ parameters:
     cocorico.display_vat: true
 
     #VAT in percent
-    cocorico.vat: 0.2
+    cocorico.vat: 0.05
+
+    #VAT in percent ALBERTA
+    cocorico.vat_ab: 0.05
+
+    #VAT in percent ONTARIO
+    cocorico.vat.ON: 0.15
+
+    #VAT in percent QUEBEC
+    cocorico.vat_qc: 0.14975
+
 
     #Does registration require email confirmation
     cocorico.registration_confirmation: false
 
     #Fees in %
-    cocorico.fee_as_asker: 0.1
-    cocorico.fee_as_offerer: 0.05
+    cocorico.fee_as_asker: 0.0
+    cocorico.fee_as_offerer: 0.0
 
     #Time unit in minute (1440 or 60)
     cocorico.time_unit: 60
 
     #Default users timezone
-    cocorico.time_zone: 'Europe/Paris'
+    cocorico.time_zone: 'America/Toronto'
 
     #Max search and booking days number.
     #Min 1. If set to 1 and days_display_mode = duration then only start date is displayed
@@ -107,7 +119,7 @@ parameters:
     cocorico.listing_countries: []
 
     cocorico.listing_favorite_countries:
-        - FR
+        - CA
 
     #Categories
     cocorico.listing_category_min: 1
@@ -141,7 +153,7 @@ parameters:
     cocorico.listing_availability_status: 1
 
     #Min booking price in euro cents
-    cocorico.booking_price_min: 500
+    cocorico.booking_price_min: 100
 
     #Does a booking request can be made with a start equal to end.
     #Does a single day is allowed in search
@@ -268,6 +280,8 @@ parameters:
     cocorico.listing_img_max: 24
     cocorico.listing_img_max_upload_size: 12 #MB
 
+    cocorico.listing_files_max: 24
+
     #Listing images sizes (px)
     cocorico.listing_img_xsmall_w: 90
     cocorico.listing_img_xsmall_h: 67
@@ -296,7 +310,7 @@ parameters:
     cocorico.listing_show_map_w: 100
     cocorico.listing_show_map_h: 480
     cocorico.listing_search_map_w: 390
-    cocorico.listing_search_map_h: 1110
+    cocorico.listing_search_map_h: 600
 
 
     ################################### Environment dependant parameters. To override in parameters.yml ####

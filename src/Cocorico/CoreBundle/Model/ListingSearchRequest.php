@@ -322,12 +322,23 @@ class ListingSearchRequest implements TranslationContainerInterface
     public function getSimilarListings()
     {
         return $this->similarListings;
+
+    }
+    public function getMatchedListings()
+    {
+        return $this->similarListings;
     }
 
     /**
      * @param int[] $similarListings
      */
     public function setSimilarListings($similarListings)
+    {
+        $this->similarListings = $similarListings;
+    }
+
+
+    public function setMatchedListings($similarListings)
     {
         $this->similarListings = $similarListings;
     }

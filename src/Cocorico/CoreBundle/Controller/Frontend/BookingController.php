@@ -13,6 +13,7 @@ namespace Cocorico\CoreBundle\Controller\Frontend;
 
 use Cocorico\CoreBundle\Entity\Booking;
 use Cocorico\CoreBundle\Entity\Listing;
+use Cocorico\CoreBundle\Entity\TaxRate;
 use Cocorico\CoreBundle\Event\BookingEvent;
 use Cocorico\CoreBundle\Event\BookingEvents;
 use Cocorico\CoreBundle\Form\Type\Frontend\BookingNewType;
@@ -65,6 +66,8 @@ class BookingController extends Controller
         \DateTime $end
     ) {
         $bookingHandler = $this->get('cocorico.form.handler.booking');
+
+
         $booking = $bookingHandler->init($this->getUser(), $listing, $start, $end);
         //Availability is validated through BookingValidator and amounts are setted through Form Event PRE_SET_DATA
         $form = $this->createCreateForm($booking);
@@ -113,10 +116,20 @@ class BookingController extends Controller
         $breadcrumbs = $this->get('cocorico.breadcrumbs_manager');
         $breadcrumbs->addBookingNewItems($request, $booking);
 
+        //Getting taxRate for specific province
+        $em = $this->getDoctrine()->getManager();
+        $province = $booking->getUser()->getProvince();
+        if ($province != null || $province != '') {
+            $taxRateObj = $em->getRepository('CocoricoCoreBundle:TaxRate')->findOneBy(array('province' => $province));
+            $taxRATE = $taxRateObj->getGST() + $taxRateObj->getPST() + $taxRateObj->getHST();
+        } else {
+            $taxRATE = null;
+        }
         return $this->render(
             'CocoricoCoreBundle:Frontend/Booking:new.html.twig',
             array(
                 'booking' => $booking,
+                'taxRATE' => $taxRATE,
                 'form' => $form->createView(),
                 //Used to hide errors fields message when a secondary submission (Voucher, Delivery, ...) is done successfully
                 'display_errors' => ($success < 2)

@@ -39,9 +39,10 @@
             <!-- infoarea -->
             <div class="infoarea container">
                 <div class="row">
-                    <!-- info-box -->
+
+                    <!-- info-box 1 -->
                     <div class="col-xs-12 col-sm-6 col-md-4 info-box">
-                        <img src="{{ asset('images/icon1.png') }}" alt="icon description" class="pull-left icon">
+                        <img src="{{ asset('images/find.svg') }}" alt="icon description" class="center-block icon">
 
                         <div class="textbox">
                             <h2>
@@ -53,9 +54,9 @@
                             </p>
                         </div>
                     </div>
-                    <!-- info-box -->
+                    <!-- info-box 2 -->
                     <div class="col-xs-12 col-sm-6 col-md-4 info-box">
-                        <img src="{{ asset('images/icon2.png') }}" alt="icon description" class="pull-left icon">
+                        <img src="{{ asset('images/book.svg') }}" alt="icon description" class="center-block icon">
 
                         <div class="textbox">
                             <h2>
@@ -68,9 +69,9 @@
                         </div>
                     </div>
                     <div class="clearfix visible-sm"></div>
-                    <!-- info-box -->
+                    <!-- info-box 3 -->
                     <div class="col-xs-12 col-sm-6 col-md-4 info-box">
-                        <img src="{{ asset('images/icon3.png') }}" alt="icon description" class="pull-left icon">
+                        <img src="{{ asset('images/manage.svg') }}" alt="icon description" class="center-block icon">
 
                         <div class="textbox">
                             <h2>
@@ -86,10 +87,10 @@
             </div>
 
             {% include 'CocoricoCoreBundle:Frontend/Home:_high_rank.html.twig'  with {
-            'listings': listings
+                'listings': listings
             } only %}
 
-            {{ render(controller('CocoricoCoreBundle:Frontend/Home:rssFeeds')) }}
+           <!-- {{ render(controller('CocoricoCoreBundle:Frontend/Home:rssFeeds')) }} -->
 
         {% endblock %}
 
@@ -105,8 +106,8 @@
 
     {#Geocoding #}
     {% include '@CocoricoCore/Frontend/ListingResult/js/_geocoding_js.html.twig' with {
-    'map_elt': '',
-    'auto_complete_elt': '#location'
+        'map_elt': '',
+        'auto_complete_elt': '#location'
     } only %}
 
     <script>
@@ -117,10 +118,10 @@
             setDefaultFavourites();
 
             initMultiSelect(
-                    '#categories',
-                    '{{ "multiselect.all_selected"|trans({}, "cocorico")|e('js') }}',
-                    '{{ "multiselect.none_selected"|trans({}, "cocorico")|e('js') }}',
-                    '{{ "multiselect.num_selected"|trans({}, "cocorico")|e('js') }}'
+                '#categories',
+                '{{ "multiselect.all_selected"|trans({}, "cocorico")|e('js') }}',
+                '{{ "multiselect.none_selected"|trans({}, "cocorico")|e('js') }}',
+                '{{ "multiselect.num_selected"|trans({}, "cocorico")|e('js') }}'
             );
         });
     </script>
@@ -130,6 +131,6 @@
     {{ parent() }}
 
     {% include 'CocoricoSeoBundle:Frontend:Home/_index_markup.jsonld.twig' ignore missing with {
-    'listings': listings
+        'listings': listings
     } only %}
 {% endblock %}

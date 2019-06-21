@@ -11,14 +11,24 @@
 
 namespace Cocorico\CoreBundle\Controller\Frontend;
 
+use Cocorico\CoreBundle\CocoricoCoreBundle;
 use Cocorico\CoreBundle\Entity\Listing;
 use Cocorico\CoreBundle\Form\Type\Frontend\ListingNewType;
+use Cocorico\CoreBundle\Model\BaseListing;
+use Cocorico\UserBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * Listing controller.
@@ -27,6 +37,9 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ListingController extends Controller
 {
+
+
+
     /**
      * Creates a new Listing entity.
      *

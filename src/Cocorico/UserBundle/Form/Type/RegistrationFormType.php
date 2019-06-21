@@ -31,7 +31,7 @@ class RegistrationFormType extends AbstractType
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -107,7 +107,7 @@ class RegistrationFormType extends AbstractType
                 array(
                     'label' => 'form.user.nationality',
                     'required' => true,
-                    'preferred_choices' => array("GB", "FR", "ES", "DE", "IT", "CH", "US", "RU"),
+                    'preferred_choices' => array("CA", "GB", "FR", "ES", "DE", "IT", "CH", "US", "RU"),
                 )
             )
             ->add(
@@ -116,9 +116,31 @@ class RegistrationFormType extends AbstractType
                 array(
                     'label' => 'form.user.country_of_residence',
                     'required' => true,
-                    'preferred_choices' => array('GB', 'FR', 'ES', 'DE', 'IT', 'CH', 'US', 'RU'),
-                    'data' => 'FR',
+                    'preferred_choices' => array('CA', 'GB', 'FR', 'ES', 'DE', 'IT', 'CH', 'US', 'RU'),
+                    'data' => 'CA',
                 )
+            )
+            ->add(
+                'province',
+                ChoiceType::class, [
+                    'choices' => [
+                        'Alberta' => 'AB',
+                        'British Columbia' => 'BC',
+                        'Manitoba' => 'MB',
+                        'New Brunswick' => 'NB',
+                        'Newfoundland and Labrador' => 'NL',
+                        'Nova Scotia' => 'NS',
+                        'Ontario' => 'ON',
+                        'Prince Edward Island' => 'PE',
+                        'Québec' => 'QC',
+                        'Saskatchewan' => 'SK',
+
+                        'Northwest Territories' => 'NT',
+                        'Nunavut' => 'NU',
+                        'Yukon' => 'YT',
+                    ],
+                    'preferred_choices' => ['AB','BC','MB','NB','NL','NS','ON','PE','QC','SK',],
+                ]
             )
             ->add(
                 'plainPassword',

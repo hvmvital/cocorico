@@ -85,6 +85,14 @@ class Listing extends BaseListing
     private $images;
 
     /**
+     * For Asserts @see \Cocorico\CoreBundle\Validator\Constraints\ListingValidator
+     *
+     * @ORM\OneToMany(targetEntity="ListingFile", mappedBy="listing", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OrderBy({"position" = "asc"})
+     */
+    private $files;
+
+    /**
      * @ORM\OneToMany(targetEntity="ListingListingCharacteristic", mappedBy="listing", cascade={"persist", "remove"}, orphanRemoval=true) //, fetch="EAGER"
      *
      */
@@ -120,6 +128,7 @@ class Listing extends BaseListing
     public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->files = new ArrayCollection();
         $this->listingListingCharacteristics = new ArrayCollection();
         $this->listingListingCategories = new ArrayCollection();
         $this->discounts = new ArrayCollection();
@@ -329,6 +338,41 @@ class Listing extends BaseListing
     public function getImages()
     {
         return $this->images;
+    }
+
+    /**
+     * Add files
+     *
+     * @param  \Cocorico\CoreBundle\Entity\ListingFile $file
+     * @return Listing
+     */
+    public function addFile(ListingFile $file)
+    {
+        $file->setListing($this); //Because the owning side of this relation is listing file
+        $this->files[] = $file;
+
+        return $this;
+    }
+
+    /**
+     * Remove files
+     *
+     * @param \Cocorico\CoreBundle\Entity\ListingFile $file
+     */
+    public function removeFile(ListingFile $file)
+    {
+        $this->files->removeElement($file);
+        $file->setListing(null);
+    }
+
+    /**
+     * Get files
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFiles()
+    {
+        return $this->files;
     }
 
     /**

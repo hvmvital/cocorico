@@ -14,6 +14,9 @@ framework:
             - '%cocorico.assets_base_urls%'
      session:
         gc_probability: 0
+     serializer:
+         enable_annotations: true
+
 
 twig:
     globals:
@@ -157,11 +160,21 @@ oneup_uploader:
         listing_images:
             max_size: 10000000
             frontend: blueimp
-            allowed_mimetypes: ["image/gif", "image/jpg", "image/jpeg", "image/png"]
+            allowed_mimetypes: ["image/gif", "image/jpg", "image/jpeg", "image/png" , "application/pdf"]
             enable_progress: true
             namer: cocorico.namer.image_namer
             storage:
                 directory: "%kernel.root_dir%/../web/uploads/listings/images/"
+
+        listing_files:
+            max_size: 10000000
+            frontend: blueimp
+            allowed_mimetypes: ["application/pdf"]
+            enable_progress: true
+            namer: cocorico.namer.file_namer
+            storage:
+                directory: "%kernel.root_dir%/../web/uploads/listings/files/"
+
 
 
 liip_imagine:

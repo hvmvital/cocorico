@@ -7,6 +7,7 @@
                 <ul class="slides">
                     {%- for listingTmp in listings -%}
                         {% set listing = listingTmp[0] %}
+                        {% set listing_category_counter = 0 %}
                         {% set listing_translation = listing.translations[app.request.locale] %}
                         {% set listing_location = listing.location %}
                         {% set listing_user = listing.user %}
@@ -23,6 +24,7 @@
                                    class="listing-box">
                                     <div class="frame">
                                         <div class="post-info">
+
                                             <div class="img-holder">
                                                 <img src="{{ (ListingImageConstants.IMAGE_FOLDER ~  listing_image) | imagine_filter('listing_large') }}"
                                                      alt="{{ listing_translation.title ~ " " ~ price }}"/>
@@ -31,6 +33,7 @@
                                             <div class="box">
                                                 <div class="box-holder">
                                                     <div class="head">
+                                                        <!--
                                                         <div class="time-price">
                                                             <strong class="price">{{ price }}</strong>
 
@@ -39,6 +42,7 @@
                                                                 / {{ (0)|add_time_unit_text }}
                                                             </p>
                                                         </div>
+                                                         -->
                                                     </div>
                                                     <div class="foot">
                                                         <div class="area">
@@ -54,12 +58,46 @@
                                                                 </span>
                                                             {% endif %}
                                                         </div>
-                                                        <strong class="title list-comma">
-                                                            {% for listingListingCategory in listing.listingListingCategories %}
-                                                                <span>{{ listingListingCategory.category.translations[app.request.locale].name }}</span>
-                                                            {% endfor %}
-                                                        </strong>
+
+                                                        <!-- Counting listings -->
+                                                        {% for listingListingCategory in listing.listingListingCategories %}
+                                                            {% set listing_category_counter = listing_category_counter +1 %}
+                                                            <!--
+                                                            {% if listingListingCategory.category.translations[app.request.locale].name == "Service request"
+                                                                or listingListingCategory.category.translations[app.request.locale].name == "Demande de service" %}
+                                                                <strong class="title list-comma" style="background: rgb(63, 193, 201); color: white;">
+                                                                    <span>{{ listingListingCategory.category.translations[app.request.locale].name }}</span>
+                                                                </strong>
+                                                            {% endif %}
+                                                             -->
+                                                        {% endfor %}
+
+
+
+
+                                                        {% for listingListingCategory in listing.listingListingCategories|slice(0,2) %}
+                                                            {% if listingListingCategory.category.translations[app.request.locale].name == "Service request"
+                                                                or listingListingCategory.category.translations[app.request.locale].name == "Demande de service" %}
+                                                                <strong class="title list-comma"
+                                                                        style="background: rgb(63, 193, 201); color: white;">
+                                                                    <span>{{ listingListingCategory.category.translations[app.request.locale].name }}</span>
+                                                                </strong>
+
+                                                            {% else %}
+                                                                <strong class="title list-comma">
+                                                                    <span>{{ listingListingCategory.category.translations[app.request.locale].name }}</span>
+                                                                </strong>
+                                                            {% endif %}
+                                                        {% endfor %}
+
+                                                        {% if listing_category_counter > 1 and listing_category_counter != 2 %}
+                                                            <strong class="title list-comma">
+                                                                <span>+{{ listing_category_counter -2 }}</span>
+                                                            </strong>
+                                                        {% endif %}
+
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -69,19 +107,36 @@
                                             <div class="alignleft">
                                                 <img src="{{ (UserImageConstants.IMAGE_FOLDER ~ image_user) | imagine_filter('user_xsmall') }}"
                                                      alt="{{ listing_user.firstName }}"/>
+                                                <h6 style="margin: 52px 0 5px 2px; font-weight: 600; text-align: center;
+                                                            color: #7f838b;">
+                                                    {{ listing_location.city }}
+                                                </h6>
                                             </div>
                                             <div class="textbox">
-                                                <h2>{{ listing_translation.title }}</h2>
+                                                <p style=" margin-left: 2px; font-weight: 400;
+                                                font-size: 18px;">
+                                                    {{ listing_translation.title }}
+                                                </p>
 
-                                                <p>{{ listing_location.city }} </p>
+                                                <h3 style="color: rgb(63, 193, 201); margin: 2px 0 0; font-weight: 300;">
+                                                    {{ price }}
+                                                </h3>
+                                                <h6 style="margin: 0 0 5px 2px; font-weight: 600;">
+                                                    {{ vatInclusionText(app.request.getLocale()) }}
+                                                    / {{ (0)|add_time_unit_text }}
+                                                </h6>
+
+
                                             </div>
                                         </div>
                                     </div>
                                 </a>
                             </div>
                         </article>
+
                     {%- endfor -%}
                 </ul>
+
             </div>{# slider-clip #}
             <div class="slider-secondary-actions">
                 <a href="#" class="slider-prev">Previous Slide</a>

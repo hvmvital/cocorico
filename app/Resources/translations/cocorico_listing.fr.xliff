@@ -232,7 +232,7 @@
       </trans-unit>
       <trans-unit id="ebe9c24f88a0e40e2069e037cf43c6748475ca57" resname="listing.edit.completion_notice_profile_desc">
         <source>listing.edit.completion_notice_profile_desc</source>
-          <target><![CDATA[<a href="%profile%">Présentez-vous</a>]]></target>
+        <target><![CDATA[<a href="%profile%">Présentez-vous</a>]]></target>
       </trans-unit>
       <trans-unit id="15d1bbc5c27c9dbc99f110c4a826dfe9350a701e" resname="listing.edit.completion_notice_profile_photo">
         <source>listing.edit.completion_notice_profile_photo</source>
@@ -262,6 +262,10 @@
         <source>listing.edit.image.title</source>
         <target>Photos</target>
       </trans-unit>
+      <trans-unit id="image_title_fr_id" resname="listing.edit.file.title">
+        <source>listing.edit.file.title</source>
+        <target>Fichiers</target>
+      </trans-unit>
       <trans-unit id="fe972c610fe8e5ade6286312f68c6d17544c168f" resname="listing.edit.index.certified">
         <source>listing.edit.index.certified</source>
         <target>Annonce certifiée</target>
@@ -281,6 +285,10 @@
       <trans-unit id="95463bdf30bf84edaa50d763ddc9aeca65a0b7d2" resname="listing.edit.presentation.title">
         <source>listing.edit.presentation.title</source>
         <target>Présentation</target>
+      </trans-unit>
+      <trans-unit id="listing_edit_presentation_matching_offers" resname="listing.edit.presentation.matching_offers">
+           <source>listing.edit.presentation.matching_offers</source>
+           <target>Offres correspondantes</target>
       </trans-unit>
       <trans-unit id="46a1de37336014d8f90160340a054c528c47e55c" resname="listing.edit.price.calendar.day_click.info">
         <source>listing.edit.price.calendar.day_click.info</source>
@@ -429,6 +437,10 @@
       <trans-unit id="1b9a8b5cdc2cd042da366c84f4822d2fea7135d6" resname="listing.images.to_upload.title">
         <source>listing.images.to_upload.title</source>
         <target>Vos images</target>
+      </trans-unit>
+      <trans-unit id="upload_files_id_fr" resname="listing.files.to_upload.title">
+        <source>listing.files.to_upload.title</source>
+        <target>Vos fichiers</target>
       </trans-unit>
       <trans-unit id="aac609f0882f7a9d1a9380c0a71a287b36f60c02" resname="listing.index.title">
         <source>listing.index.title</source>
@@ -661,6 +673,10 @@
         <source>listing.show.photos.title</source>
         <target>Images</target>
       </trans-unit>
+      <trans-unit id="listing_show_files_title_fr_id" resname="listing.show.files.title">
+                    <source>listing.show.files.title</source>
+                    <target>Fichiers</target>
+      </trans-unit>
       <trans-unit id="c6c355b248d9a40842f3ae0d3519be3eaa790bf8" resname="listing.show.policy.title">
         <source>listing.show.policy.title</source>
         <target>Politique de réservation</target>
@@ -775,7 +791,7 @@
       </trans-unit>
       <trans-unit id="9afa0d417148b9d4c74a5657724593e4c5578d4f" resname="listing_price.min {{ min_price }}">
         <source>listing_price.min {{ min_price }}</source>
-        <target>Le prix doit être supérieur ou égale à {{ min_price }}€</target>
+        <target>Le prix doit être supérieur ou égale à {{ min_price }} $</target>
       </trans-unit>
       <trans-unit id="793890ef1a5e2a969f867ff69e3a84f5cf01751b" resname="listing_search.form.categories">
         <source>listing_search.form.categories</source>
@@ -852,6 +868,10 @@
       <trans-unit id="1fb7e962c5b1b85811a4116e8d4a22e5c6ad341e" resname="nav.listing.images.link">
         <source>nav.listing.images.link</source>
         <target>Photos</target>
+      </trans-unit>
+      <trans-unit id="files_nav_id_fr" resname="nav.listing.files.link">
+        <source>nav.listing.files.link</source>
+        <target>Fichiers</target>
       </trans-unit>
       <trans-unit id="6b7e582b7d96545e4b34ce2efa309297b4661542" resname="nav.listing.location.link">
         <source>nav.listing.location.link</source>

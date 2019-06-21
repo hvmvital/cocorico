@@ -33,11 +33,11 @@
     {{ parent() }}
 
     {% stylesheets
-    'css/vendor/fullcalendar.min.css'
-    'css/fullcalendar-override.css'
+        'css/vendor/fullcalendar.min.css'
+        'css/fullcalendar-override.css'
 
-    filter='cssrewrite, ?minifycsscompressor' output='css/compiled/fullcalendar.css' %}
-    <link rel="stylesheet" href="{{ asset_url }}"/>
+        filter='cssrewrite, ?minifycsscompressor' output='css/compiled/fullcalendar.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}
 {% endblock %}
 
@@ -88,6 +88,12 @@
                                             <a href="#photos" data-toggle="tab" role="tab"
                                                data-text="{{ 'listing.show.photos.title'|trans }}">
                                                 {{ 'listing.show.photos.title'|trans }}
+                                            </a>
+                                        </li>
+                                        <li role="presentation" class="">
+                                            <a href="#files" data-toggle="tab" role="tab"
+                                               data-text="{{ 'listing.show.files.title'|trans }}">
+                                                {{ 'listing.show.files.title'|trans }}
                                             </a>
                                         </li>
                                         <li role="presentation">
@@ -143,6 +149,33 @@
                                             <a href="#" class="btn-prev">previous</a>
                                             <a href="#" class="btn-next">next</a>
                                         </div>
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane" id="files">
+                                        <!-- files -->
+                                        <h1>Files</h1>
+                                        <table class="table table-hover table-striped">
+
+                                            <tbody>
+                                            {% for file in listing.files %}
+                                                {% set name = file.name|split('_') %}
+                                                <tr>
+                                                    <td style="padding: 8px;">
+                                                        <a target=”_blank” style="text-decoration: none;"
+                                                           href="/uploads/listings/files/{{ listing.id }}/{{ file.name }}">
+                                                            <p style="font-size: 12px;
+                                                                margin: 0;
+                                                                font-weight: 300;">
+                                                                <img src="{{ asset('images/pdf-40.png') }}"/>
+                                                                {{ name[1] }}
+                                                            </p>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+
                                     </div>
 
                                     <div role="tabpanel" class="tab-pane" id="map">
@@ -451,7 +484,7 @@
 
                         {# similar results#}
                         {{ render(controller('CocoricoCoreBundle:Frontend/ListingSearch:similarListing',
-                        { 'id': listing.id }
+                            { 'id': listing.id }
                         )) }}
 
                     </div>
@@ -472,19 +505,19 @@
 
     {#Calendar #}
     {% javascripts
-    'js/vendor/fullcalendar/fullcalendar.min.js'
-    'js/vendor/fullcalendar/lang-all.js'
+        'js/vendor/fullcalendar/fullcalendar.min.js'
+        'js/vendor/fullcalendar/lang-all.js'
 
-    filter="jsqueeze" output='js/compiled/calendar.js' %}
-    <script src="{{ asset_url }}"></script>
+        filter="jsqueeze" output='js/compiled/calendar.js' %}
+        <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
     {% include '@CocoricoCore/Frontend/Listing/js/_calendar_js.html.twig' with {
-    'calendar_elt': '#fc-calendar',
-    'listing_id': listing.id,
-    'default_price': price,
-    'edit_mode': false,
-    'edit_type': false
+        'calendar_elt': '#fc-calendar',
+        'listing_id': listing.id,
+        'default_price': price,
+        'edit_mode': false,
+        'edit_type': false
     } only %}
 
 
@@ -492,12 +525,12 @@
     {% set coordinate = listing.location.coordinate %}
 
     {% include '@CocoricoCore/Frontend/ListingResult/js/_geocoding_js.html.twig' with {
-    'map_elt': '#map-listing',
-    'auto_complete_elt': '#location',
-    'default_lat': coordinate.lat,
-    'default_lng': coordinate.lng,
-    'default_zoom': 16,
-    'display_marker': displayMarker
+        'map_elt': '#map-listing',
+        'auto_complete_elt': '#location',
+        'default_lat': coordinate.lat,
+        'default_lng': coordinate.lng,
+        'default_zoom': 16,
+        'display_marker': displayMarker
     } only %}
 
     <script>
@@ -526,17 +559,17 @@
 
             // Categories
             initMultiSelect(
-                    '#categories',
-                    '{{ "multiselect.all_selected"|trans({}, "cocorico")|e('js') }}',
-                    '{{ "multiselect.none_selected"|trans({}, "cocorico")|e('js') }}',
-                    '{{ "multiselect.num_selected"|trans({}, "cocorico")|e('js') }}'
+                '#categories',
+                '{{ "multiselect.all_selected"|trans({}, "cocorico")|e('js') }}',
+                '{{ "multiselect.none_selected"|trans({}, "cocorico")|e('js') }}',
+                '{{ "multiselect.num_selected"|trans({}, "cocorico")|e('js') }}'
             );
         });
     </script>
 
     {#Get geocoding information and persist it #}
     {% include '@CocoricoGeo/Common/js/_geocode_js.html.twig' with {
-    'coordinate': coordinate
+        'coordinate': coordinate
     } only %}
 {% endblock %}
 
@@ -546,10 +579,10 @@
     {{ parent() }}
 
     {% include 'CocoricoSeoBundle:Frontend:Listing/_show_markup.jsonld.twig' ignore missing with {
-    'listing': listing,
-    'listing_translation': listing_translation,
-    'listing_user': listing_user,
-    'listing_location': listing_location,
-    'reviews': reviews
+        'listing': listing,
+        'listing_translation': listing_translation,
+        'listing_user': listing_user,
+        'listing_location': listing_location,
+        'reviews': reviews
     } only %}
 {% endblock %}

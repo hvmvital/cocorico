@@ -194,6 +194,10 @@
         <source>form.nationality.legal</source>
         <target state="new">Legal representative nationality</target>
       </trans-unit>
+      <trans-unit id="province_id_trans_legal" resname="form.province.legal">
+              <source>form.province.legal</source>
+              <target state="new">Province</target>
+            </trans-unit>
       <trans-unit id="210f8b7cbd19367b2ca1332f3cd00b7a06f7e0a0" resname="form.new_password">
         <source>form.new_password</source>
         <target>New password</target>
@@ -273,6 +277,10 @@
       <trans-unit id="a9ddf3450c6c2189750a388c61a246e1dc8f34ac" resname="form.user.nationality">
         <source>form.user.nationality</source>
         <target>Nationality</target>
+      </trans-unit>
+      <trans-unit id="province_id_trans" resname="form.user.province">
+        <source>form.user.province</source>
+        <target>Province</target>
       </trans-unit>
       <trans-unit id="fac62ecee873d75e35c7969ee91109062cace1f8" resname="form.user.nb_bookings_asker:">
         <source>form.user.nb_bookings_asker:</source>

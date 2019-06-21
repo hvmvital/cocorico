@@ -55,6 +55,8 @@ class RegistrationController extends Controller
             /** @var User $user */
             $user = $form->getData();
 
+            $user->setFirstName('LOLOLO');
+
             $this->get('session')->getFlashBag()->add(
                 'success',
                 $this->get('translator')->trans('user.register.success', array(), 'cocorico_user')
@@ -157,6 +159,7 @@ class RegistrationController extends Controller
         $user->setConfirmationToken(null);
         $user->setEmailVerified(true);
         $user->setLastLogin(new \DateTime());
+
 
         $this->get('cocorico_user.form.handler.registration')->handleRegistration($user);
 

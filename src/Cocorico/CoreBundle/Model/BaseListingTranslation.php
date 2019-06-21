@@ -75,6 +75,19 @@ abstract class BaseListingTranslation
     }
 
     /**
+     * Set translatableId
+     *
+     * @param  int $listing_id
+     * @return $this
+     */
+    public function setTranslatableId($listing_id)
+    {
+        $this->translatableId = $listing_id;
+
+        return $this;
+    }
+
+    /**
      * Set title
      *
      * @param  string $title

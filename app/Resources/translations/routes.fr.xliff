@@ -126,6 +126,10 @@
         <source>/dashboard/listing/{id}/edit_images</source>
         <target>/tableau-de-bord/annonce/{id}/editer-images</target>
       </trans-unit>
+      <trans-unit id="editer-files-id" resname="cocorico_dashboard_listing_edit_files">
+              <source>/dashboard/listing/{id}/edit_files</source>
+              <target>/tableau-de-bord/annonce/{id}/editer-files</target>
+      </trans-unit>
       <trans-unit id="efd024f32b7dbbc957e1dec4d6735ec04227cb12" resname="cocorico_dashboard_listing_edit_location">
         <source>/dashboard/listing/{id}/edit_location</source>
         <target state="new">/tableau-de-bord/annonce/{id}/editer-adresse</target>

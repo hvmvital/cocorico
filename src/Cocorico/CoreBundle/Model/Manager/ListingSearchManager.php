@@ -465,6 +465,49 @@ class ListingSearchManager
         return new Paginator($query);
     }
 
+    public function getMatchedListingsByIds(
+        $listingSearchRequest,
+        $ids,
+        $page,
+        $locale,
+        array $idsExcluded = array(),
+        $maxPerPage = null
+    ) {
+        // Remove the current listing id from the similar listings
+        $ids = array_diff($ids, $idsExcluded);
+
+        $queryBuilder = $this->getRepository()->getFindQueryBuilder();
+
+        //Where
+        $queryBuilder
+            ->where('t.locale = :locale')
+            ->andWhere('l.status = :listingStatus')
+            ->andWhere('l.id IN (:ids)')
+            ->setParameter('locale', $locale)
+            ->setParameter('listingStatus', Listing::STATUS_PUBLISHED)
+            ->setParameter('ids', $ids);
+
+        $event = new ListingSearchEvent($listingSearchRequest, $queryBuilder);
+        $this->dispatcher->dispatch(ListingSearchEvents::LISTING_SEARCH_BY_IDS_QUERY, $event);
+        $queryBuilder = $event->getQueryBuilder();
+
+        if ($maxPerPage === null) {
+            //Pagination
+            if ($page) {
+                $queryBuilder->setFirstResult(($page - 1) * $this->maxPerPage);
+            }
+
+            $queryBuilder->setMaxResults($this->maxPerPage);
+        }
+
+        //Query
+        $query = $queryBuilder->getQuery();
+
+        $query->setHydrationMode(Query::HYDRATE_ARRAY);
+
+        return new Paginator($query);
+    }
+
     /**
      * @return int
      */

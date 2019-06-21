@@ -2,6 +2,10 @@
 
 {% set optionBundleEnabled = bundleExist('CocoricoListingOptionBundle') %}
 
+{% if taxRATE %}
+    {% set vatRate = taxRATE %}
+{% endif %}
+
 {% set amount = booking.amountDecimal | format_price(app.request.locale, 2, false) %}
 {% set amount_excl_vat = booking.amountExcludingVATDecimal(vatRate) | format_price(app.request.locale, 2, false) %}
 {% set amount_total = booking.amountToPayByAskerDecimal | format_price(app.request.locale, 2, false) %}
@@ -15,11 +19,17 @@
 
 <div class="total-reservation">
     <h3>{{ 'booking.total_amount'|trans }}</h3>
+    <center>
+        <h2 style="font-weight: 300">VAT rate: {{ vatRate }}%</h2>
+        <h2 style="font-weight: 300">Province: {{ booking.user.province }}</h2>
+    </center>
+
 
     <div class="alert alert-info">
         <ul class="list-inline">
 
             <li>
+
                 {{ 'booking.amount.total:'|trans }}
                 <strong data-id="total-amount" class="price">
                     {{ amount_total }}

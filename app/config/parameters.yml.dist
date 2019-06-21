@@ -1,9 +1,9 @@
 parameters:
     database_host:     127.0.0.1
-    database_port:     ~
+    database_port:
     database_name:     cocorico_dev
-    database_user:     cocorico_dev
-    database_password: cocorico_dev
+    database_user:     root
+    database_password:
 
     #MongoDB
     mongodb_server: mongodb://localhost:27017
@@ -28,8 +28,8 @@ parameters:
     cocorico.assets_base_urls: https://cocorico.dev
 
     #Request Context url for email send from command
-    router.request_context.host: cocorico.dev
-    router.request_context.scheme: https
+    router.request_context.host: cocorico.local
+    router.request_context.scheme: http
     router.request_context.base_url: ''
 
     #Admin access

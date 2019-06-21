@@ -200,6 +200,7 @@ class UserManager extends BaseUserManager implements UserManagerInterface
                         $birthDate = new \DateTime('1915-01-01');
                     }
                     $user->setBirthday($birthDate);
+                    $user->setProvince($responseArray['province']);
                     //todo: transform location and hometown country to iso code
 //                    if (array_key_exists('location', $responseArray)) {
 //                        $user->setCountryOfResidence($responseArray['location']['name']);
@@ -210,6 +211,8 @@ class UserManager extends BaseUserManager implements UserManagerInterface
 //                    }
 
                     $user->setEmailVerified($responseArray['verified']);
+
+
                 }
                 // if fbUser does not exist, then add one 
                 $fbUser = new UserFacebook();

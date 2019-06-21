@@ -41,6 +41,13 @@
                         {{ 'nav.listing.images.link'|trans }}
                     </a>
                 </li>
+                <li role="presentation" class="{{ nav_side_dashboard_current == "file" ? 'active' : '' }}">
+                    <a data-text="{{ 'nav.listing.files.link'|trans }}"
+                       aria-controls="presentation"
+                       href="{{ path('cocorico_dashboard_listing_edit_files', { 'id': listing.id }) }}">
+                        {{ 'nav.listing.files.link'|trans }}
+                    </a>
+                </li>
                 <li role="presentation" class="{{ nav_side_dashboard_current == "characteristic" ? 'active' : '' }}">
                     <a data-text="{{ 'nav.listing.characteristic.link'|trans }}"
                        aria-controls="presentation"
@@ -62,10 +69,15 @@
                         {{ 'nav.listing.location.link'|trans }}
                     </a>
                 </li>
+
+
             </ul>
+
         </nav>
+        <!--
         <div class="currency-converter white">
             {% include '@CocoricoCore/Frontend/Common/_currency_converter.html.twig' with {'close' : false} only %}
         </div>
+        -->
     </div>
 </aside>

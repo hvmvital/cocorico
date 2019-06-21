@@ -1,0 +1,89 @@
+{% extends 'CocoricoCoreBundle:Dashboard/Listing:layout.html.twig' %}
+
+{% trans_default_domain 'cocorico_listing' %}
+
+{% block nav_side_dashboard -%}
+    {% set nav_side_dashboard_current = 'file' %}
+    {{ parent() }}
+
+    {{ app.session.set('file_directory', listing.id) }}
+
+{%- endblock %}
+
+
+
+{% block content_dashboard -%}
+
+    {{ form_start(form, {'attr': {'class': 'form-area'}}) }}
+
+    <fieldset>
+        <legend class="hidden">form area</legend>
+        <!-- alert -->
+        {{ render(controller('CocoricoCoreBundle:Dashboard/Offerer/Listing:completionNotice', {'listing': listing})) }}
+        {% include 'CocoricoCoreBundle:Frontend/Common:_flash.html.twig' %}
+        {{ form_errors(form) }}
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <!-- tab pics -->
+            <div role="tabpanel" class="tab-pane active" id="pics">
+                <!-- files-selection-design -->
+                <div class="file-selection">
+
+                    <h2>{{ 'listing.edit.file.title'|trans }}</h2>
+                   {# <strong class="sub-heading">{{ 'listing_edit.files.title'|trans({'%max_files%': listing_file_max}) }}</strong>
+#}
+                    <div class="area">
+                        <div class="uploader">
+                            <div id="images-new">
+                                {{ form_errors(form.file.new) }}
+                                {{ form_widget(form.file.new ) }}
+
+                                {{ form_errors(form.file.uploaded) }}
+                                {{ form_widget(form.file.uploaded ) }}
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <p>{{ 'listing_edit.photos.details'|trans }}</p>
+                        </div>
+
+                        <div id="drop-zone">
+                            {{ 'listing.drop.files'|trans }}
+                        </div>
+                        <div id="progress" class="progress">
+                            <div class="progress-bar progress-bar-success"></div>
+                        </div>
+                        <h3>{{ 'listing.files.to_upload.title'|trans }}</h3>
+                        <ul id="files-to-upload" class="images-list"></ul>
+                    </div>
+
+
+                    <!-- files-list -->
+                    <div class="files-list">
+                        {{ form_errors(form.files) }}
+                        {{ form_widget(form.files ) }}
+                    </div>
+                </div>
+                <div class="btn-block text-center">
+                    <button type="submit" class="btn btn-default">{{ 'listing.save'|trans }}</button>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    {{ form_end(form) }}
+{%- endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {#Files upload#}
+    {% include '@CocoricoCore/Frontend/Common/js/_upload_files_js.html.twig' with {
+        'upload_elt': '#listing_file_new',
+        'upload_files': '#listing_file_uploaded',
+        'upload_url': oneup_uploader_endpoint('listing_files') ~ "?listing_id=" ~ listing.id,
+        'upload_max': listing_img_max,
+    } only %}
+
+{% endblock %}
+

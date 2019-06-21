@@ -26,6 +26,12 @@ services:
         tags:
             - { name: image_namer }
 
+    cocorico.namer.file_namer:
+        class:  Cocorico\CoreBundle\Namer\FileNamer
+        arguments: ["@session"]
+        tags:
+            - { name: file_namer }
+
 
     #JMS Entity Translation extractor
     cocorico.translator.entity.extractor:
@@ -46,7 +52,7 @@ services:
             - "%kernel.environment%"
 
     #Translator manager
-    cocorico.translator.manager: 
+    cocorico.translator.manager:
         class: Cocorico\CoreBundle\Model\Manager\TranslateManager
         arguments:
             - "%cocorico.translator.secret.key%"

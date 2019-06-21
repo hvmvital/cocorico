@@ -112,7 +112,8 @@
 {% endif %}
 
 {% include 'CocoricoCoreBundle:Frontend:Booking/_amounts.html.twig' with {
-    'booking' : booking
+    'booking' : booking,
+    'taxRATE' : taxRATE
 } only %}
 
 {% if addressDelivery %}
